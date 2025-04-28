@@ -159,7 +159,29 @@ nav {
     nav {
         display: none;
     }
-    
+    @media (max-width: 768px) {
+        .brand {
+            flex-grow: 1;
+        }
+        
+        nav {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        /* Add your new styles here (around line 162) */
+        .header-container .btn {
+            margin-right: 15px; /* Add space between call button and menu button */
+        }
+        
+        /* If you have this line, you can remove it or modify it */
+        .contact-button {
+            display: none;
+        }
+    }
     .mobile-menu-btn {
         display: block;
     }
