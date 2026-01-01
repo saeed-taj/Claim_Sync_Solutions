@@ -211,9 +211,9 @@
                 <p>Client Satisfaction</p>
             </div>
             <div class="stat-item">
-                <h2>24 / 7</h2>
-                <p>Support Available</p>
-            </div>
+  <h2 data-static="true">24 / 4</h2>
+  <p>Support Available</p>
+</div>
         </div>
     </section>
 
@@ -389,36 +389,28 @@
         const statItems = document.querySelectorAll('.stat-item h2');
 
         const startCounters = () => {
-            statItems.forEach(item => {
-                const target = parseInt(item.textContent);
-                let count = 0;
-                const increment = target / 30;
+  statItems.forEach(item => {
 
-                const updateCount = () => {
-                    if (count < target) {
-                        count += increment;
-                        item.textContent = Math.ceil(count);
-                        setTimeout(updateCount, 30);
-                    } else {
-                        item.textContent = target;
-                    }
-                };
+    //  Skip static text like "24 / 4"
+    if (item.dataset.static === "true") return;
 
-                updateCount();
-            });
-        };
+    const target = parseInt(item.textContent);
+    let count = 0;
+    const increment = target / 30;
 
-        // Start counters when they come into view
-        const statsSection = document.querySelector('.stats-section');
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                startCounters();
-            }
-        });
+    const updateCount = () => {
+      if (count < target) {
+        count += increment;
+        item.textContent = Math.ceil(count) + (item.textContent.includes('+') ? '+' : '');
+        setTimeout(updateCount, 30);
+      } else {
+        item.textContent = target + (item.textContent.includes('+') ? '+' : '');
+      }
+    };
 
-        if (statsSection) {
-            observer.observe(statsSection);
-        }
+    updateCount();
+  });
+};
     </script>
 </body>
 
